@@ -11,7 +11,11 @@
 
     <artifactId>api</artifactId>
     <dependencies>
-
+        <dependency>
+            <groupId>com.yfy.beem</groupId>
+            <artifactId>dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
