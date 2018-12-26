@@ -6,10 +6,11 @@ import com.yfy.beem.serverv2.util.Mappings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -51,5 +52,20 @@ public class MainApiController {
                 .toArray();
     }
 
+    @PostMapping(value = Mappings.ADD_USER)
+    public void addUser(@RequestParam Long id,
+                        @RequestParam String name,
+                        @RequestParam String publicKey,
+                        HttpServletRequest request) {
+        User user = User.builder()
+                .id(id)
+                .name(name)
+                .publicKey(publicKey)
+                .ipAddress(request.getRemoteAddr())
+                .savedDate(LocalDateTime.now())
+                .build();
+        log.info("saving new user {}", user);
+        userDao.addUser(user);
+    }
 
 }

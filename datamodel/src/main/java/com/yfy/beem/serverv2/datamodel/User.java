@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 /**
  * Class that represents a single user.
@@ -23,4 +24,5 @@ public class User {
     private String name;
     private String publicKey;
     private String ipAddress;
+    private LocalDateTime savedDate;
 }

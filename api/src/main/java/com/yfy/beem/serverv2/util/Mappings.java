@@ -11,4 +11,5 @@ public final class Mappings {
 
     public static final String API_ROOT = "api";
     public static final String GET_USERS = "users";
+    public static final String ADD_USER = "users";
 }
