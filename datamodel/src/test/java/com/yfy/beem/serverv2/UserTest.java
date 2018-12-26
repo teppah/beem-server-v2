@@ -1,5 +1,6 @@
 package com.yfy.beem.serverv2;
 
+import com.yfy.beem.serverv2.datamodel.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
