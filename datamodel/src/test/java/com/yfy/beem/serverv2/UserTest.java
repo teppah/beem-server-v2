@@ -1,5 +1,6 @@
 package com.yfy.beem.serverv2;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,12 +8,14 @@ import java.util.Random;
 
 import static org.junit.Assert.*;
 
+@Slf4j
 public class UserTest {
     private Random r;
 
     @Before
     public void setUp() throws Exception {
         r = new Random();
+        log.info("finished setting up Random for test, r = {}", r);
     }
 
     @Test
