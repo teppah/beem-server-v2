@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of = "id")
+@Builder
 public class User {
     @Id
     private Long id;
