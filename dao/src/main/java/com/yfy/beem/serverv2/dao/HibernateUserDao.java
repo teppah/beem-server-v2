@@ -27,6 +27,7 @@ public class HibernateUserDao implements UserDao {
 
     @Override
     public List<User> getUsers() {
+        log.info("finding all stored users");
         return ImmutableList.copyOf(userRepository.findAll());
     }
 
@@ -37,21 +38,25 @@ public class HibernateUserDao implements UserDao {
                 .stream(userRepository.findAll())
                 .filter(user -> user.getName().equals(name))
                 .collect(Collectors.toList());
+        log.info("finding all stored users matching name '{}', matching = {}", name, users);
         return ImmutableList.sortedCopyOf(Comparator.comparing(User::getName), users);
     }
 
     @Override
     public User getUserById(Long id) {
+        log.info("finding user stored matching id '{}'", id);
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public void addUser(User user) {
+        log.info("saving user '{}'", user);
         userRepository.save(user);
     }
 
     @Override
-    public void removeUserById(Long userId) {
-        userRepository.deleteById(userId);
+    public void removeUserById(Long id) {
+        log.info("deleting user with id '{}'", id);
+        userRepository.deleteById(id);
     }
 }
