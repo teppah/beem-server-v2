@@ -9,15 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * Controller that handles all the REST API endpoint requests
- * */
+ */
 @Slf4j
-@Controller
+@RestController
 @RequestMapping(Mappings.API_ROOT)
 public class MainApiController {
     private final UserDao userDao;
@@ -28,11 +26,11 @@ public class MainApiController {
         log.info("finished instantiating MainApiController {}", this);
     }
 
-    @GetMapping(Mappings.GET_USERS)
-    public User[] getUsers(@RequestParam(required = false) Long id,
-                           @RequestParam(required = false) String name) {
+    @GetMapping(value = Mappings.GET_USERS)
+    public Object[] getUsers(@RequestParam(required = false) Long id,
+                             @RequestParam(required = false) String name) {
         List<User> users = userDao.getUsers();
-        return (User[]) users.stream()
+        Object[] filteredUsers = users.stream()
                 // filter by id
                 .filter(user -> {
                     if (id != null) {
@@ -50,6 +48,8 @@ public class MainApiController {
                     }
                 })
                 .toArray();
+        log.info("found all users matching criteria id = {}, name = {}, as follows: {}", id, name, filteredUsers);
+        return filteredUsers;
     }
 
     @PostMapping(value = Mappings.ADD_USER)
@@ -62,10 +62,15 @@ public class MainApiController {
                 .name(name)
                 .publicKey(publicKey)
                 .ipAddress(request.getRemoteAddr())
-                .savedDate(LocalDateTime.now())
                 .build();
         log.info("saving new user {}", user);
         userDao.addUser(user);
+    }
+
+    @DeleteMapping(value = Mappings.DELETE_USER)
+    public void deleteUser(@RequestParam Long id) {
+        log.info("deleting user by id '{}'", id);
+        userDao.removeUserById(id);
     }
 
 }
