@@ -22,8 +22,17 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.5</version>
-            <scope>runtime</scope>
+            <!--<scope>runtime</scope>-->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <!--in-memory db for testing-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 
