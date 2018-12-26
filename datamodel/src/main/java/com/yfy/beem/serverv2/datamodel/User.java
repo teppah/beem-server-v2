@@ -1,4 +1,4 @@
-package com.yfy.beem.serverv2;
+package com.yfy.beem.serverv2.datamodel;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Class that represents a single user. //TODO write javadoc for the different fields
+ * Class that represents a single user.
  * */
 @Entity
 @Table(name = "users")
