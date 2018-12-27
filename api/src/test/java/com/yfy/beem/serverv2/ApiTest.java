@@ -30,8 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see com.yfy.beem.serverv2.controller.MainApiController
  * */
 @RunWith(SpringRunner.class)
-//@WebMvcTest(controllers = MainApiController.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@WebMvcTest(controllers = MainApiController.class)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ApiTest {
 //    @Autowired
