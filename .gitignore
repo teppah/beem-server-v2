@@ -27,3 +27,4 @@ target/
 /.nb-gradle/
 
 .attach_pid*
+accessedIps\.txt
